@@ -1,4 +1,6 @@
+import { preserveWhitespacesDefault } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { BarConfig } from './bar-config';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'circular-bar';
+
+  config = {
+    percentage:100,
+    animationTimeS:1,
+    centerColor:"white",
+    barColor:"brown",
+    progressTextColor:"dark",
+    backgroundColor:"white"
+  } as BarConfig;
 }

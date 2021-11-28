@@ -1,4 +1,5 @@
-import { Component, Host, HostBinding, OnInit } from '@angular/core';
+import { Component, Host, HostBinding, Input, OnInit } from '@angular/core';
+import { BarConfig } from '../bar-config';
 
 @Component({
   selector: 'app-bar',
@@ -7,26 +8,65 @@ import { Component, Host, HostBinding, OnInit } from '@angular/core';
 })
 export class BarComponent implements OnInit {
 
+  @Input() barConfig:BarConfig = {
+    percentage:75,
+    animationTimeS:5,
+    fps:60,
+    centerColor:"white",
+    barColor:"red",
+    progressTextColor:"red",
+    backgroundColor:"white"
+  } as BarConfig;;
+
   constructor() { }
 
   @HostBinding("style.--leftrotation") leftrotation:string = "0deg";
   @HostBinding("style.--rightrotation") rightrotation:string = "0deg";
-  //starting 4 with progress switch to 1
   @HostBinding("style.--blockerzindex") blockerzindex:number = 4;
-  @HostBinding("style.--centercolor") centercolor:string = "white";
-  @HostBinding("style.--barcolor") barcolor:string = "blue";
-  @HostBinding("style.--blockercolor") blockercolor:string = "white";
+  @HostBinding("style.--centercolor") centercolor:string = this.barConfig.centerColor;
+  @HostBinding("style.--barcolor") barcolor:string = this.barConfig.barColor;
+  @HostBinding("style.--textcolor") textcolor:string = this.barConfig.progressTextColor;
+  @HostBinding("style.--blockercolor") blockercolor:string = this.barConfig.backgroundColor;
+
+  progress:string = ""
 
   percentage:number = 0;
   barAngle:number = 0;
 
   leftHalfCircleAngle:number = 0;
 
+  interval = 20
+
   ngOnInit(): void {
+    this.bindCustomValue();
+    this.computeFrameTime();
     setInterval(() => {
-      this.barAngle++;
+      if(this.percentage<this.barConfig.percentage){
+        this.percentage++;
+      }
+      this.computeBarAngle(this.percentage);
+      this.setPercentage(this.percentage);
       this.setBarAngle(this.barAngle);
-    },20)
+    },this.interval)
+  }
+
+  private bindCustomValue(){
+    this.centercolor = this.barConfig.centerColor;
+    this.barcolor = this.barConfig.barColor;
+    this.textcolor = this.barConfig.progressTextColor;
+    this.blockercolor = this.barConfig.backgroundColor;
+  }
+
+  private computeFrameTime(){
+    this.interval = (this.barConfig.animationTimeS/this.barConfig.percentage)*1000;
+  }
+
+  private computeBarAngle(percentage:number){
+    this.barAngle = percentage * 3.6;
+  }
+
+  private setPercentage(percentage:number){
+    this.progress = percentage + "%";
   }
 
   private setBarAngle(angle:number){
@@ -57,9 +97,9 @@ export class BarComponent implements OnInit {
 
   private setRightVisible(visible:boolean){
     if(visible){
-      this.blockerzindex = 1;
+      this.blockerzindex = 2;
     } else {
-      this.blockerzindex = 4;
+      this.blockerzindex = 5;
     }
   }
 }

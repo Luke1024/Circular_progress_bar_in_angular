@@ -4,5 +4,7 @@ export interface BarConfig {
     centerColor:string;
     barColor:string;
     progressTextColor:string;
-    backgroundColor:string;    
+    backgroundColor:string;   
+    fadeInTimeS:number;
+    fadeInDelayS:number
 }

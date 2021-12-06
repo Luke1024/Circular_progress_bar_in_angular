@@ -11,11 +11,13 @@ export class AppComponent {
   title = 'circular-bar';
 
   config = {
-    percentage:100,
-    animationTimeS:1,
-    centerColor:"white",
+    percentage:65,
+    animationTimeS:2,
+    centerColor:"rgb(50,50,50)",
     barColor:"brown",
-    progressTextColor:"dark",
-    backgroundColor:"white"
+    progressTextColor:"white",
+    backgroundColor:"rgb(50,50,50)",
+    fadeInTimeS:2,
+    fadeInDelayS:1
   } as BarConfig;
 }

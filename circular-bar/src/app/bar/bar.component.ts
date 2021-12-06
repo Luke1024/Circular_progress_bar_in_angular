@@ -8,25 +8,19 @@ import { BarConfig } from '../bar-config';
 })
 export class BarComponent implements OnInit {
 
-  @Input() barConfig:BarConfig = {
-    percentage:75,
-    animationTimeS:5,
-    fps:60,
-    centerColor:"white",
-    barColor:"red",
-    progressTextColor:"red",
-    backgroundColor:"white"
-  } as BarConfig;;
+  @Input() barConfig:BarConfig = {} as BarConfig;
 
   constructor() { }
 
   @HostBinding("style.--leftrotation") leftrotation:string = "0deg";
   @HostBinding("style.--rightrotation") rightrotation:string = "0deg";
   @HostBinding("style.--blockerzindex") blockerzindex:number = 4;
-  @HostBinding("style.--centercolor") centercolor:string = this.barConfig.centerColor;
-  @HostBinding("style.--barcolor") barcolor:string = this.barConfig.barColor;
-  @HostBinding("style.--textcolor") textcolor:string = this.barConfig.progressTextColor;
-  @HostBinding("style.--blockercolor") blockercolor:string = this.barConfig.backgroundColor;
+  @HostBinding("style.--centercolor") centercolor:string = "";
+  @HostBinding("style.--barcolor") barcolor:string = "";
+  @HostBinding("style.--textcolor") textcolor:string = "";
+  @HostBinding("style.--blockercolor") blockercolor:string = "";
+  @HostBinding("style.--fadeindelay") fadeInDelay:string = "";
+  @HostBinding("style.--fadeinduration") fadeInDuration:string = "";
 
   progress:string = ""
 
@@ -35,10 +29,24 @@ export class BarComponent implements OnInit {
 
   leftHalfCircleAngle:number = 0;
 
-  interval = 20
+  increaseInterval = 20
+  opacityInterval = 20
 
   ngOnInit(): void {
-    this.bindCustomValue();
+    this.bindValues();
+    setTimeout(() => this.startAnimation(),this.barConfig.fadeInDelayS*1000);
+  }
+
+  private bindValues(){
+    this.centercolor = this.barConfig.centerColor;
+    this.barcolor = this.barConfig.barColor;
+    this.textcolor = this.barConfig.progressTextColor;
+    this.blockercolor = this.barConfig.backgroundColor;
+    this.fadeInDelay = this.barConfig.fadeInDelayS + "s";
+    this.fadeInDuration = this.barConfig.fadeInTimeS + "s";
+  }
+
+  private startAnimation(){
     this.computeFrameTime();
     setInterval(() => {
       if(this.percentage<this.barConfig.percentage){
@@ -47,18 +55,11 @@ export class BarComponent implements OnInit {
       this.computeBarAngle(this.percentage);
       this.setPercentage(this.percentage);
       this.setBarAngle(this.barAngle);
-    },this.interval)
-  }
-
-  private bindCustomValue(){
-    this.centercolor = this.barConfig.centerColor;
-    this.barcolor = this.barConfig.barColor;
-    this.textcolor = this.barConfig.progressTextColor;
-    this.blockercolor = this.barConfig.backgroundColor;
+    },this.increaseInterval)
   }
 
   private computeFrameTime(){
-    this.interval = (this.barConfig.animationTimeS/this.barConfig.percentage)*1000;
+    this.increaseInterval = (this.barConfig.animationTimeS/this.barConfig.percentage)*1000;
   }
 
   private computeBarAngle(percentage:number){

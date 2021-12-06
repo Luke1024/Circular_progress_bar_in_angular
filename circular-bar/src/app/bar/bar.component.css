@@ -1,7 +1,18 @@
+
 #bar {
     width: 100px;
     height: 100px;
     position: relative;
+    opacity: var(--opacity);
+    animation: baranimation;
+    animation-delay: var(--fadeindelay);
+    animation-duration: var(--fadeinduration);
+    animation-fill-mode: both;
+}
+
+@keyframes baranimation {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #left_blocker {

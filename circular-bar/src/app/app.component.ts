@@ -13,10 +13,10 @@ export class AppComponent {
   config = {
     percentage:65,
     animationTimeS:2,
-    centerColor:"rgb(50,50,50)",
+    centerColor:"rgb(150,150,150)",
     barColor:"brown",
-    progressTextColor:"white",
-    backgroundColor:"rgb(50,50,50)",
+    progressTextColor:"rgba(0,0,0,0.8)",
+    backgroundColor:"rgb(30,30,30)",
     fadeInTimeS:2,
     fadeInDelayS:1
   } as BarConfig;

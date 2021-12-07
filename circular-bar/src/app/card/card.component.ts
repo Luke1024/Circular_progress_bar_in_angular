@@ -14,10 +14,13 @@ export class CardComponent implements OnInit {
 
   description = "Java"
 
-  @HostBinding("style.--background") background:string="";
+  @HostBinding("style.--background") background:string="rgb(40,40,40)";
+  @HostBinding("style.--description_blur_anime_delay") descriptionBlurAnimeDelay:string="1s";
+  @HostBinding("style.--description_blur_anime_duration") descriptionBlutAnimeDuration:string="2s";
+  @HostBinding("style.--card_anime_delay") cardAnimeDelay:string = "0s";
+  @HostBinding("style.--card_anime_duration") cardAnimeDuration:string="2s";
 
-  ngOnInit(): void {
-    this.background = this.barConfig.backgroundColor;
-  }
+  ngOnInit(): void {}
+
 
 }

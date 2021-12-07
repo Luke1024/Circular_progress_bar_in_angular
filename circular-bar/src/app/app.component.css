@@ -2,15 +2,6 @@
     position: relative;
 }
 
-#bar {
-    position: absolute;
-    background-color: white;
-    margin-top: 12rem;
-    height: 1rem;
-    width: 100%;
-    z-index: 1;
-}
-
 #card {
     position: absolute;
     top: 10px;

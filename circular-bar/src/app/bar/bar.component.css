@@ -11,13 +11,8 @@
 }
 
 @keyframes barfadein {
-    from {
-         opacity: 0;
-         filter:blur(5px); 
-        }
-    to { opacity: 1;
-        filter:blur(0px); 
-        }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #background {
@@ -31,7 +26,8 @@
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
-    box-shadow: 5px 5px 3px 3px black, -3px -3px 3px 3px rgba(255,255,255,0.4);
+    box-shadow: 5px 5px 3px 3px black, -3px -3px 3px 3px rgba(255, 255, 255, 0.3);
+    
 }
 
 #left_blocker {
@@ -98,18 +94,26 @@
     transform:translate(-50%, -50%);
     background-color: var(--centercolor);
     border-radius: 50%;
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow: inset 3px 3px 3px 1px black;
+    border:1px solid rgba(119, 127, 155, 0.486);
+    box-shadow: inset 3px 3px 3px 1px rgb(0, 0, 0),
+    -1px -1px 1px 1px rgba(0,0,0,0.4),
+    1px 1px 1px 1px rgba(255,255,255,0.3);
 }
 
 #text {
     position: absolute;
     z-index: 7;
-    top:50%;
+    top:53%;
     left:50%;
     transform: translate(-50%, -50%);
     font-size:22px;
     font-weight: bold;
     color:var(--textcolor);
     text-shadow: 1px 1px 1px black, -1px 0 rgba(255,255,255,0.2), 0 1px rgba(255,255,255,0.2), 1px 0 rgba(255,255,255,0.2), 0 -1px rgba(255,255,255,0.2);
+    font-family: bazzaronite;
+}
+
+@font-face {
+    font-family:bazzaronite;
+    src: url(bazaronite.regular.ttf)
 }

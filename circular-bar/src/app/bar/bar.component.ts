@@ -14,7 +14,7 @@ export class BarComponent implements OnInit {
 
   @HostBinding("style.--leftrotation") leftrotation:string = "0deg";
   @HostBinding("style.--rightrotation") rightrotation:string = "0deg";
-  @HostBinding("style.--blockerzindex") blockerzindex:number = 4;
+  @HostBinding("style.--blockerzindex") blockerzindex:number = 5;
   @HostBinding("style.--centercolor") centercolor:string = "";
   @HostBinding("style.--barcolor") barcolor:string = "";
   @HostBinding("style.--textcolor") textcolor:string = "";
@@ -27,10 +27,7 @@ export class BarComponent implements OnInit {
   percentage:number = 0;
   barAngle:number = 0;
 
-  leftHalfCircleAngle:number = 0;
-
   increaseInterval = 20
-  opacityInterval = 20
 
   ngOnInit(): void {
     this.bindValues();
@@ -48,14 +45,21 @@ export class BarComponent implements OnInit {
 
   private startAnimation(){
     this.computeFrameTime();
-    setInterval(() => {
+    setTimeout(() => this.runAnime(), this.barConfig.animationDelay*1000);
+  } 
+
+  private runAnime() {
+    let interval = setInterval(() => {
       if(this.percentage<this.barConfig.percentage){
         this.percentage++;
+      } else {
+        clearInterval(interval);
       }
       this.computeBarAngle(this.percentage);
       this.setPercentage(this.percentage);
       this.setBarAngle(this.barAngle);
-    },this.increaseInterval)
+    },
+    this.increaseInterval)
   }
 
   private computeFrameTime(){

@@ -1,5 +1,5 @@
 import { Component, Host, HostBinding, Input, OnInit } from '@angular/core';
-import { BarConfig } from '../bar-config';
+import { BarConfig } from '../../bar-config';
 
 @Component({
   selector: 'app-bar',

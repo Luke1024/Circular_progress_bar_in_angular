@@ -3,11 +3,11 @@ import { BarConfig } from '../bar-config';
 import { CardConfig } from '../card-config';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-card-circular-bar',
+  templateUrl: './card-circular-bar.component.html',
+  styleUrls: ['./card-circular-bar.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardCircularBarComponent implements OnInit {
 
   @Input() cardConfig:CardConfig = {} as CardConfig;
   barConfig:BarConfig = {} as BarConfig; 

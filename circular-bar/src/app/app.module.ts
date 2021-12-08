@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BarComponent } from './bar/bar.component';
-import { CardComponent } from './card/card.component';
+import { CardCircularBarComponent } from './card/card-circular-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarComponent,
-    CardComponent
+    CardCircularBarComponent
   ],
   imports: [
     BrowserModule,
